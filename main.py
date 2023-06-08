@@ -1,8 +1,13 @@
 def get_user_details():
     name = input("Hi! How are you today? Please tell me your name: ")
     gender = input("Please enter your gender (M/F/D): ")
-    print(f"\nHello {name} ({gender}), let's find the perfect outfit for you!\n")
-    return name
+    if gender == 'M':
+        gender_text = "Mr."
+    elif gender == 'F':
+        gender_text = "Ms."
+    else:
+        gender_text = "Mx."
+    print(f"\nHello {gender_text} {name}! Let us dress you to impress today")
 
 def get_weather_choice():
     print("Please choose the type of weather from the following options:")
@@ -35,7 +40,7 @@ def give_clothing_suggestions(weather):
         },
         'Hot': {
             'headgear': ["neck covering hat"],
-            't_shirt': ["v neckT-shirt"],
+            't_shirt': ["v neck T-shirt"],
             'pants': ["CHINOS"],
             'socks': ["anklet"],
             'shoes': ["sandals"]
@@ -85,9 +90,6 @@ def give_clothing_suggestions(weather):
             print(f"{clothing_type.capitalize()}: {', '.join(choices)}")
     print("\nThank you for using Dress to Impress! You will kill it today.")
 
-# Main program flow
 name = get_user_details()
 weather_choice = get_weather_choice()
 give_clothing_suggestions(weather_choice)
-if __name__ == "__main__":
-    main()
