@@ -1,5 +1,3 @@
-from itertools import product
-
 def get_user_details():
     name = input("Hi! How are you today? Please tell me your name: ")
     gender = input("Please enter your gender (M/F/D): ")
@@ -30,34 +28,22 @@ def get_weather_choice():
 def give_clothing_suggestions(weather):
     clothing_options = {
         'Warm': {
-            'headgear': [],
-            'neckgear': [],
             't_shirt': ["half-sleeve T-shirt"],
-            'sweaters': [],
-            'jackets': [],
-            'coats': [],
             'pants': ["cotton pants"],
             'socks': ["anklet"],
             'shoes': ["loafers", "sneakers"]
         },
         'Hot': {
             'headgear': ["neck covering hat"],
-            'neckgear': [],
             't_shirt': ["v neckT-shirt"],
-            'sweaters': [],
-            'jackets': [],
-            'coats': [],
             'pants': ["CHINOS"],
             'socks': ["anklet"],
             'shoes': ["sandals"]
         },
         'Pleasant': {
             'headgear': ["P cap"],
-            'neckgear': [],
             't_shirt': ["sleeve T-shirt"],
-            'sweaters': [],
             'jackets': ["Denim Jacket"],
-            'coats': [],
             'pants': ["LINEN"],
             'socks': ["half socks"],
             'shoes': ["sneakers"]
@@ -68,7 +54,6 @@ def give_clothing_suggestions(weather):
             't_shirt': ["turtle-neck T-shirt"],
             'sweaters': ["Quarter-Zip", "Vest"],
             'jackets': ["Trucker Jacket"],
-            'coats': [],
             'pants': ["Jeans"],
             'socks': ["knee-high"],
             'shoes': ["Boots"]
@@ -78,7 +63,6 @@ def give_clothing_suggestions(weather):
             'neckgear': ["the Parisian scarf"],
             't_shirt': ["warmer half sleeve"],
             'sweaters': ["Cardigan"],
-            'jackets': [],
             'coats': ["Dounen Mantel"],
             'pants': ["gefuttert jeans"],
             'socks': ["thigh-high"],
@@ -86,10 +70,7 @@ def give_clothing_suggestions(weather):
         },
         'Rainy': {
             'headgear': ["baseball cap"],
-            'neckgear': [],
             't_shirt': ["half-sleeve T-shirt"],
-            'sweaters': [],
-            'jackets': [],
             'coats': ["TRENCH RAIN COAT"],
             'pants': ["CORDUROY"],
             'socks': ["mid-calf"],
@@ -98,12 +79,10 @@ def give_clothing_suggestions(weather):
     }
 
     print("Here are some clothing suggestions for you:")
-    options = []
-    for clothing_type, choices in clothing_options[weather].items():
+    options = clothing_options.get(weather, {})
+    for clothing_type, choices in options.items():
         if choices:
-            options.append(choices)
-    for combination in product(*options):
-        print(", ".join(combination))
+            print(f"{clothing_type.capitalize()}: {', '.join(choices)}")
     print("\nThank you for using Dress to Impress! You will kill it today.")
 
 # Main program flow
